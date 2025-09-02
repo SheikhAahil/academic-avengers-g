@@ -13,8 +13,11 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => cb(null, Date.now() + '-' + file.originalname)
 });
-const upload = multer({ storage, fileFilter });
-
+const upload = multer({ 
+  storage, 
+  fileFilter, 
+  limits: { fileSize: 7 * 1024 * 1024 } // 7 MB size limit
+});
 const fs = require('fs');
 router.post('/', auth, upload.single('file'), (req, res) => {
   if(!req.file) return res.status(400).json({error:'File rejected'});
@@ -43,3 +46,4 @@ app.use('/api/files', fileRoutes);
 app.use('/api/chat', chatRoutes);
 
 // ...socket.io code and server listen unchanged
+
