@@ -57,3 +57,14 @@ io.on('connection', (socket) => {
 
 server.listen(process.env.PORT || 5000, () => console.log('Backend running'));
 app.use('/uploads', express.static('uploads));
+const corsOptions = {
+  origin: 'http://localhost:3000', // or your frontend deployed URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+const io = socketio(server, { 
+  cors: { origin: 'http://localhost:3000', methods: ['GET','POST'] } 
+});
+
