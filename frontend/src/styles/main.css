@@ -1,0 +1,4 @@
+body { font-family: Arial; background:#fafafa; color:#333;}
+button { margin: 0 5px; }
+input, button { padding: .5rem; }
+div, form { margin: 1rem 0; }
