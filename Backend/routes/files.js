@@ -31,3 +31,15 @@ router.get('/', (req, res) => {
 });
 
 module.exports = router;
+// ...existing imports and setup
+
+app.use(cors());
+app.use(express.json());
+
+// Serve uploaded files statically
+app.use('/uploads', express.static('uploads'));
+
+app.use('/api/files', fileRoutes);
+app.use('/api/chat', chatRoutes);
+
+// ...socket.io code and server listen unchanged
